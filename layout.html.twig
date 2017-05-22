@@ -1,0 +1,41 @@
+{# itop-portal-url-brick/layout.html.twig #}
+{# Url brick base layout #}
+{% extends 'itop-portal-base/portal/src/views/bricks/layout.html.twig' %}
+
+{% block pPageBodyClass %}{{ parent() }} page_url_brick{% if oBrick.GetFullscreen == true %} page_url_brick_fullscreen{% endif %}{% endblock %}
+
+{% block pMainHeader %}
+	<div class="col-xs-12">
+		<div id="main-header-title">
+			<h2>{% block pMainHeaderTitle %}{{ oBrick.GetTitle()|dict_s }}{% endblock %}</h2>
+			{% if oBrick.GetSubtitle() is not null %}
+				<div id="main-header-subtitle">
+					{{ oBrick.GetSubtitle()|dict_s|raw }}
+				</div>
+			{% endif %}
+		</div>
+		<div id="main-header-actions">
+            {% block pMainHeaderActions %}
+            {% endblock %}
+		</div>
+	</div>
+{% endblock %}
+
+{% block pMainContentHolder%}
+	<div id="url_iframe_loader" class="overlay_content">
+		{% include 'itop-portal-base/portal/src/views/helpers/loader.html.twig' %}
+	</div>
+	<iframe id="url_iframe" src="{{ oBrick.GetUrl() }}"></iframe>
+{% endblock %}
+
+{% block pPageReadyScripts %}
+	// Changing iFrame height
+	{% if oBrick.GetFullscreen == false %}
+		var iIframeMarginBottom = 20;
+		var iIframeHeight = $(window).height() - $('#main-header').height() - iIframeMarginBottom * 2;
+	{% else %}
+		var iIframeHeight = $(window).height();
+	{% endif %}
+
+	$('#url_iframe').height(iIframeHeight);
+{% endblock %}

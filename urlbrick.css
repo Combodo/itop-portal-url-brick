@@ -1,0 +1,36 @@
+.page_url_brick #main-header-title h2{
+    margin-top: 0px; /* As there is no action button in the header, it's better to reduce the upper margin for a better rendering */
+}
+.page_url_brick #main-header-subtitle{
+    margin-bottom: 10px;
+}
+.page_url_brick #url_iframe_loader{
+    position: absolute;
+    z-index: -1;
+    top: 35%;
+    left: 0px;
+    width: 100%;
+    text-align: center;
+    color: #777;
+    opacity: 0.8;
+}
+.page_url_brick #url_iframe{
+    width: 100%;
+    border: none;
+}
+.page_url_brick #footer-wrapper{
+    display: none;
+}
+
+/* Fullscreen mode*/
+.page_url_brick.page_url_brick_fullscreen #main-wrapper{
+    margin-top: 0px;
+}
+.page_url_brick.page_url_brick_fullscreen #main-wrapper > .row > div{
+    padding-left: 0px;
+    padding-right: 0px;
+    overflow: hidden;
+}
+.page_url_brick.page_url_brick_fullscreen #main-header{
+    display: none;
+}
