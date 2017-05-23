@@ -1,4 +1,7 @@
-Below is an example of UrlBrick instance:
+Below is an example of UrlBrick instance.
+Current XML alteration from this brick (see datamodel.itop-portal-url-brick.xml) only adds the brick's css. You must invoke an instance of the brick yourself in order to have it on the portal.
+
+WARNING: The current XML alteration and the following example are hard-coded on portal instance of id "itop-portal", you must change it if necessary.
 
 <?xml version="1.0" encoding="UTF-8"?>
 <itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.3">
