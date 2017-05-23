@@ -5,7 +5,7 @@
 
 SetupWebPage::AddModule(
 	__FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-	'itop-portal-url-brick/1.0.1',
+	'itop-portal-url-brick/1.0.2',
 	array(
 		// Identification
 		//
@@ -15,7 +15,7 @@ SetupWebPage::AddModule(
 		// Setup
 		//
 		'dependencies' => array(
-            'itop-portal-base/1.1.0',
+            'itop-portal-base/1.0.0',
 		),
 		'mandatory' => false,
 		'visible' => true,
