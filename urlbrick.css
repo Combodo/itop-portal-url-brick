@@ -1,3 +1,6 @@
+.page_url_brick #main-header-title{
+    min-height: 4em;
+}
 .page_url_brick #main-header-title h2{
     margin-top: 0px; /* As there is no action button in the header, it's better to reduce the upper margin for a better rendering */
 }

@@ -19,13 +19,14 @@
 
 namespace Combodo\iTop\Portal\Brick;
 
+use \MetaModel;
 use \DOMFormatException;
 use \Combodo\iTop\DesignElement;
 use \Combodo\iTop\Portal\Brick\PortalBrick;
 
 /**
  * Description of UrlBrick
- * 
+ *
  * @author Guillaume Lajarige
  */
 class UrlBrick extends PortalBrick
@@ -67,6 +68,7 @@ class UrlBrick extends PortalBrick
 	 * Sets the url of the brick
 	 *
 	 * @param string $sUrl
+     * @return UrlBrick
 	 */
 	public function SetUrl($sUrl)
 	{
@@ -88,6 +90,7 @@ class UrlBrick extends PortalBrick
      * Sets the fullscreen of the brick
      *
      * @param boolean $bFullscreen
+     * @return UrlBrick
      */
     public function SetFullscreen($bFullscreen)
     {
@@ -109,6 +112,7 @@ class UrlBrick extends PortalBrick
      * Sets the subtitle of the brick
      *
      * @param string $sSubtitle
+     * @return UrlBrick
      */
     public function SetSubtitle($sSubtitle)
     {
@@ -121,13 +125,13 @@ class UrlBrick extends PortalBrick
 	 * This is used to set all the brick attributes at once.
 	 *
 	 * @param \Combodo\iTop\DesignElement $oMDElement
-	 * @return CreateBrick
+	 * @return UrlBrick
 	 */
 	public function LoadFromXml(DesignElement $oMDElement)
 	{
 		parent::LoadFromXml($oMDElement);
 
-		// Checking specific elements
+		// Checking specific elements from XML
 		foreach ($oMDElement->GetNodes('./*') as $oBrickSubNode)
 		{
 			switch ($oBrickSubNode->nodeName)
@@ -146,7 +150,40 @@ class UrlBrick extends PortalBrick
 			}
 		}
 
+		// Checking specific elements from iTop config
+        // Note: We do not do this at the end of the constructor because it must override xml and therefore be called after xml parsing.
+        $this->LoadFromConfig();
+
+		// If url is empty, the brick disable itself
+        if($this->GetUrl() === null || $this->GetUrl() === '')
+        {
+            $this->SetActive(false);
+        }
+
 		return $this;
 	}
+
+    /**
+     * Load the brick's data from the iTop config.
+     *
+     * @return UrlBrick
+     */
+    public function LoadFromConfig()
+    {
+        // Checking brick parameters from config file
+        $aBricksSettings = MetaModel::GetModuleSetting(PORTAL_MODULE_ID, 'bricks');
+        if(is_array($aBricksSettings) && array_key_exists($this->GetId(), $aBricksSettings))
+        {
+            $aBrickSettings = $aBricksSettings[$this->GetId()];
+
+            // Url
+            if(array_key_exists('url', $aBrickSettings))
+            {
+                $this->SetUrl($aBrickSettings['url']);
+            }
+        }
+
+        return $this;
+    }
 
 }

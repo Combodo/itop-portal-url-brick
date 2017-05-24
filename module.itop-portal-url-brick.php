@@ -10,7 +10,7 @@ SetupWebPage::AddModule(
 		// Identification
 		//
 		'label' => 'Portal: URL Brick',
-	'category' => 'business',
+		'category' => 'business',
 
 		// Setup
 		//
