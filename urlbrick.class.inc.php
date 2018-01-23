@@ -1,6 +1,6 @@
 <?php
 
-// Copyright (C) 2010-2015 Combodo SARL
+// Copyright (C) 2010-2018 Combodo SARL
 //
 //   This file is part of iTop.
 //
@@ -19,10 +19,8 @@
 
 namespace Combodo\iTop\Portal\Brick;
 
-use \MetaModel;
-use \DOMFormatException;
-use \Combodo\iTop\DesignElement;
-use \Combodo\iTop\Portal\Brick\PortalBrick;
+use MetaModel;
+use Combodo\iTop\DesignElement;
 
 /**
  * Description of UrlBrick
@@ -35,10 +33,12 @@ class UrlBrick extends PortalBrick
 
     const DEFAULT_FULLSCREEN = false;
     const DEFAULT_URL = null;
+    const DEFAULT_URL_PARAMETERS_CALLBACK_NAME = null;
     const DEFAULT_SUBTITLE = null;
 
 	static $sRouteName = 'p_url_brick';
 	protected $sUrl;
+	protected $sUrlParametersCallbackName;
 	protected $bFullscreen;
 	protected $sSubtitle;
 
@@ -50,6 +50,7 @@ class UrlBrick extends PortalBrick
 		parent::__construct();
 
 		$this->sUrl = static::DEFAULT_URL;
+		$this->sUrlParametersCallbackName = static::DEFAULT_URL_PARAMETERS_CALLBACK_NAME;
 		$this->bFullscreen = static::DEFAULT_FULLSCREEN;
 		$this->sSubtitle = static::DEFAULT_SUBTITLE;
 	}
@@ -68,11 +69,33 @@ class UrlBrick extends PortalBrick
 	 * Sets the url of the brick
 	 *
 	 * @param string $sUrl
-     * @return UrlBrick
+	 * @return UrlBrick
 	 */
 	public function SetUrl($sUrl)
 	{
 		$this->sUrl = $sUrl;
+		return $this;
+	}
+
+	/**
+	 * Returns the brick url parameters callback name (FQ)
+	 *
+	 * @return string
+	 */
+	public function GetUrlParametersCallbackName()
+	{
+		return $this->sUrlParametersCallbackName;
+	}
+
+	/**
+	 * Sets the url parameters callback name of the brick. Must be FQ.
+	 *
+	 * @param string $sCallbackName
+	 * @return UrlBrick
+	 */
+	public function SetUrlParametersCallbackName($sCallbackName)
+	{
+		$this->sUrlParametersCallbackName = $sCallbackName;
 		return $this;
 	}
 
@@ -137,15 +160,19 @@ class UrlBrick extends PortalBrick
 			switch ($oBrickSubNode->nodeName)
 			{
 				case 'url':
-					$this->SetUrl($oBrickSubNode->GetText(self::DEFAULT_URL));
+					$this->SetUrl($oBrickSubNode->GetText(static::DEFAULT_URL));
+					break;
+
+				case 'url_parameters_callback':
+					$this->SetUrlParametersCallbackName($oBrickSubNode->GetText(static::DEFAULT_URL_PARAMETERS_CALLBACK_NAME));
 					break;
 
                 case 'fullscreen':
-                    $this->SetFullscreen( ($oBrickSubNode->GetText(self::DEFAULT_FULLSCREEN) === 'true') ? true : false );
+                    $this->SetFullscreen( ($oBrickSubNode->GetText(static::DEFAULT_FULLSCREEN) === 'true') ? true : false );
                     break;
 
                 case 'subtitle':
-                    $this->SetSubtitle($oBrickSubNode->GetText(self::DEFAULT_SUBTITLE));
+                    $this->SetSubtitle($oBrickSubNode->GetText(static::DEFAULT_SUBTITLE));
                     break;
 			}
 		}
@@ -159,6 +186,12 @@ class UrlBrick extends PortalBrick
         {
             $this->SetActive(false);
         }
+
+        // If url parameters callback name is empty, it should be reset to default value
+		if($this->sUrlParametersCallbackName === '')
+		{
+			$this->SetUrlParametersCallbackName(static::DEFAULT_URL_PARAMETERS_CALLBACK_NAME);
+		}
 
 		return $this;
 	}

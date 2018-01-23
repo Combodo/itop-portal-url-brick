@@ -9,7 +9,7 @@ WARNING: The current XML alteration and the following example are hard-coded on 
 		<module_design id="itop-portal" xsi:type="portal">
 			<bricks>
 				<!-- Exemple for a UrlBrick -->
-				<brick id="url-to-combod-website" xsi:type="Combodo\iTop\Portal\Brick\UrlBrick" _delta="define">
+				<brick id="url-to-combodo-website" xsi:type="Combodo\iTop\Portal\Brick\UrlBrick" _delta="define">
                     <rank>
                         <default>90</default>
                     </rank>
@@ -25,8 +25,12 @@ WARNING: The current XML alteration and the following example are hard-coded on 
                     </decoration_class>
                     <!-- Text or dictionary entry to be displayed uneder the brick title -->
                     <!--<subtitle/>-->
-                    <!-- URL of the webpage to display. Note: Omitting the "http:" will make the iframe automatically use the same protocol "http|https" as the parent web page. This is mostly necessary when one the server is forced to https. -->
+                    <!-- URL of the webpage to display. Note: Omitting the "http:" will make the iframe automatically use the same protocol "http|https" as the parent web page. This is mostly necessary when the server is forced to https. -->
                     <url>//wiki.openitop.org</url>
+                    <!-- FQN of a static method (without parenthesis) that returns extra parameters to add to the URL. -->
+                    <!-- Returned parameters will be url-encoded automatically. -->
+                    <!-- Note: Extra code can be done there like setting cookies or so. -->
+                    <!--<url_parameters_callback><![CDATA[\Ticket::Foo]]></url_parameters_callback>-->
                     <!-- Fullscreen true|false. Defines if the webpage is displayed with its title and subtitle or fills all the page. Default is false. -->
                     <!--<fullscreen>false</fullscreen>-->
                 </brick>
