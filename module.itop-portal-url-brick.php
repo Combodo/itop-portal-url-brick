@@ -5,11 +5,11 @@
 
 SetupWebPage::AddModule(
 	__FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-	'itop-portal-url-brick/1.0.3',
+	'itop-portal-url-brick/1.0.4',
 	array(
 		// Identification
 		//
-		'label' => 'Portal: URL Brick',
+		'label' => 'Portal: Adds the URL Brick to the portal framework',
 		'category' => 'business',
 
 		// Setup
