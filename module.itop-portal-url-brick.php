@@ -1,15 +1,20 @@
 <?php
-//
-// iTop module definition file
-//
+
+/**
+ * Module itop-portal-url-brick
+ *
+ * @author      Guillaume Lajarige <guillaume.lajarige@combodo.com>
+ * @copyright   Copyright (C) 2012-2019 Combodo SARL
+ * @license     https://www.combodo.com/documentation/combodo-software-license.html
+ */
 
 SetupWebPage::AddModule(
 	__FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-	'itop-portal-url-brick/1.0.4',
+	'itop-portal-url-brick/1.0.5',
 	array(
 		// Identification
 		//
-		'label' => 'Portal: Adds the URL Brick to the portal framework',
+		'label' => 'Embedded webpage in iTop portal',
 		'category' => 'business',
 
 		// Setup
