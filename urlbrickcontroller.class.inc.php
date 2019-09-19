@@ -10,18 +10,21 @@
 
 namespace Combodo\iTop\Portal\Controller;
 
-use Silex\Application;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use IssueLog;
-use Combodo\iTop\Portal\Helper\ApplicationHelper;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class UrlBrickController extends BrickController
 {
 
-	public function DisplayAction(Request $oRequest, Application $oApp, $sBrickId)
+	public function DisplayAction(Request $oRequest, $sBrickId)
 	{
+		/** @var \Combodo\iTop\Portal\Brick\BrickCollection $oBrickCollection */
+		$oBrickCollection = $this->get('brick_collection');
+		
 		/** @var \Combodo\iTop\Portal\Brick\UrlBrick $oBrick */
-		$oBrick = ApplicationHelper::GetLoadedBrickFromId($oApp, $sBrickId);
+		$oBrick = $oBrickCollection->GetBrickById($sBrickId);
 		$aData = array(
 		    'oBrick' => $oBrick
         );
@@ -34,8 +37,9 @@ class UrlBrickController extends BrickController
 			// Checking that the callback is valid
 			if (!is_callable($sUrlCallbackName))
 			{
-				IssueLog::Error(__METHOD__ . ' at line ' . __LINE__ . ' : Invalid url parameters callback "' . $sUrlCallbackName . '" used in brick "' . $oBrick->GetId() . '".');
-				$oApp->abort(500, 'Invalid url parameters callback "' . $sUrlCallbackName . '" used in brick "' . $oBrick->GetId() . '".');
+				IssueLog::Error(__METHOD__ . ' at line ' . __LINE__ . ' : URL Brick : Invalid url parameters callback "' . $sUrlCallbackName . '" used in brick "' . $oBrick->GetId() . '".');
+				throw new HttpException(Response::HTTP_INTERNAL_SERVER_ERROR,
+					'URL Brick : Invalid url parameters callback "' . $sUrlCallbackName . '" used in brick "' . $oBrick->GetId() . '".');			
 			}
 
 			// Calling callback (We check if the method is a simple function or if it's part of a class in which case only static function are supported)
@@ -54,7 +58,7 @@ class UrlBrickController extends BrickController
 			// Adding parameters to url
 			if(!is_array($aUrlParameters))
 			{
-				IssueLog::Warning(__METHOD__ . ' at line ' . __LINE__ . ' : Url parameters callback (' . $oBrick->GetUrlParametersCallbackName() . ') for brick "' . $oBrick->GetId() . '" should have returned an array.');
+				IssueLog::Warning(__METHOD__ . ' at line ' . __LINE__ . ' : URL Brick : Url parameters callback (' . $oBrick->GetUrlParametersCallbackName() . ') for brick "' . $oBrick->GetId() . '" should have returned an array.');
 			}
 			else
 			{
@@ -74,11 +78,11 @@ class UrlBrickController extends BrickController
 
 		if($oRequest->isXmlHttpRequest())
         {
-            $oResponse = $oApp->json($aData);
+            $oResponse = new JsonResponse($aData);
         }
         else
         {
-            $oResponse = $oApp['twig']->render($oBrick->GetPageTemplatePath(), $aData);
+            $oResponse = $this->render($oBrick->GetPageTemplatePath(), $aData);
         }
 
         return $oResponse;

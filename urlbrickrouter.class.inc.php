@@ -10,12 +10,12 @@
 
 namespace Combodo\iTop\Portal\Router;
 
-class UrlBrickRouter extends AbstractRouter
-{
-	static $aRoutes = array(
-		array('pattern' => '/url/{sBrickId}',
-			'callback' => 'Combodo\\iTop\\Portal\\Controller\\UrlBrickController::DisplayAction',
-			'bind' => 'p_url_brick')
-	);
+use Combodo\iTop\Portal\Routing\ItopExtensionsExtraRoutes;
 
-}
+ItopExtensionsExtraRoutes::AddRoutes(array(
+	array(
+		'pattern' => '/url/{sBrickId}',
+		'callback' => 'Combodo\\iTop\\Portal\\Controller\\UrlBrickController::DisplayAction',
+		'bind' => 'p_url_brick'
+	)
+));

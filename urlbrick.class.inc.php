@@ -195,7 +195,7 @@ class UrlBrick extends PortalBrick
     public function LoadFromConfig()
     {
         // Checking brick parameters from config file
-        $aBricksSettings = MetaModel::GetModuleSetting(PORTAL_MODULE_ID, 'bricks');
+        $aBricksSettings = MetaModel::GetModuleSetting($_ENV['PORTAL_ID'], 'bricks');
         if(is_array($aBricksSettings) && array_key_exists($this->GetId(), $aBricksSettings))
         {
             $aBrickSettings = $aBricksSettings[$this->GetId()];

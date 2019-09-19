@@ -10,7 +10,7 @@
 
 SetupWebPage::AddModule(
 	__FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-	'itop-portal-url-brick/1.0.5',
+	'itop-portal-url-brick/1.1.0-dev',
 	array(
 		// Identification
 		//
@@ -20,8 +20,8 @@ SetupWebPage::AddModule(
 		// Setup
 		//
 		'dependencies' => array(
-            'itop-portal-base/1.0.0',
-            'itop-portal/1.0.0',
+            'itop-portal-base/2.7.0',
+            'itop-portal/2.7.0',
 		),
 		'mandatory' => false,
 		'visible' => true,
@@ -29,6 +29,7 @@ SetupWebPage::AddModule(
 		// Components
 		//
 		'datamodel' => array(
+			'../itop-portal-base/portal/vendor/autoload.php',
 			'urlbrick.class.inc.php',
 			'urlbrickcontroller.class.inc.php',
 			'urlbrickrouter.class.inc.php',
