@@ -4,7 +4,7 @@
 		<module_design id="itop-portal" xsi:type="portal" _delta="must_exist">
 			<properties>
 				<themes>
-					<theme id="url-css" _delta="define">itop-portal-url-brick/urlbrick.css</theme>
+					<theme id="url-css" _delta="define">itop-portal-url-brick/asset/css/urlbrick.css</theme>
 				</themes>
 			</properties>
 		</module_design>
