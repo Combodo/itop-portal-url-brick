@@ -44,7 +44,7 @@ class UrlBrick extends PortalBrick
 	protected $sSubtitle;
 
 	/**
-	 * Constructor
+	 * @inheritDoc
 	 */
 	public function __construct()
 	{
@@ -145,11 +145,7 @@ class UrlBrick extends PortalBrick
     }
 
 	/**
-	 * Load the brick's data from the xml passed as a ModuleDesignElement.
-	 * This is used to set all the brick attributes at once.
-	 *
-	 * @param \Combodo\iTop\DesignElement $oMDElement
-	 * @return UrlBrick
+	 * @inheritDoc
 	 */
 	public function LoadFromXml(DesignElement $oMDElement)
 	{

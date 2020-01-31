@@ -4,20 +4,32 @@
  * Module itop-portal-url-brick
  *
  * @author      Guillaume Lajarige <guillaume.lajarige@combodo.com>
- * @copyright   Copyright (C) 2012-2019 Combodo SARL
+ * @copyright   Copyright (C) 2012-2020 Combodo SARL
  * @license     https://www.combodo.com/documentation/combodo-software-license.html
  */
 
 namespace Combodo\iTop\Portal\Controller;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use IssueLog;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
+/**
+ * Class UrlBrickController
+ *
+ * @package Combodo\iTop\Portal\Controller
+ */
 class UrlBrickController extends BrickController
 {
-
+	/**
+	 * @param \Symfony\Component\HttpFoundation\Request $oRequest
+	 * @param string                                    $sBrickId
+	 *
+	 * @return \Symfony\Component\HttpFoundation\JsonResponse|\Symfony\Component\HttpFoundation\Response
+	 * @throws \Combodo\iTop\Portal\Brick\BrickNotFoundException
+	 */
 	public function DisplayAction(Request $oRequest, $sBrickId)
 	{
 		/** @var \Combodo\iTop\Portal\Brick\BrickCollection $oBrickCollection */

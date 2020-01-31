@@ -18,6 +18,7 @@
  * You should have received a copy of the GNU Affero General Public License
  */
 
+/** @noinspection PhpUnhandledExceptionInspection */
 SetupWebPage::AddModule(
 	__FILE__, // Path to the current file, all other file names are relative to the directory containing this file
 	'itop-portal-url-brick/1.1.0-dev',
