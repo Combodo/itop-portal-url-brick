@@ -31,8 +31,8 @@ SetupWebPage::AddModule(
 		// Setup
 		//
 		'dependencies' => array(
-            'itop-portal-base/2.7.0',
-            'itop-portal/2.7.0',
+            'itop-portal-base/1.0.0',
+            'itop-portal/1.0.0',
 		),
 		'mandatory' => false,
 		'visible' => true,
@@ -40,11 +40,7 @@ SetupWebPage::AddModule(
 		// Components
 		//
 		'datamodel' => array(
-			// Portal framework autoloader is needed for the UrlBrickRouter
-			'../itop-portal-base/portal/vendor/autoload.php',
-			// Must be explicitly loaded to register its routes
-			'src/Router/UrlBrickRouter.php',
-			'vendor/autoload.php',
+			'compatibilitybridge.php',
 		),
 		'webservice' => array(
 			
