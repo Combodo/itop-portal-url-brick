@@ -40,10 +40,11 @@ SetupWebPage::AddModule(
 		// Components
 		//
 		'datamodel' => array(
+			// Portal framework autoloader is needed for the UrlBrickRouter
 			'../itop-portal-base/portal/vendor/autoload.php',
-			'src/Brick/UrlBrick.php',
-			'src/Controller/UrlBrickController.php',
+			// Must be explicitly loaded to register its routes
 			'src/Router/UrlBrickRouter.php',
+			'vendor/autoload.php',
 		),
 		'webservice' => array(
 			
@@ -67,6 +68,3 @@ SetupWebPage::AddModule(
 		),
 	)
 );
-
-
-?>
