@@ -22,10 +22,10 @@
 // In the next version of the extension, this will be remove and the require_once from the 2.7 will be moved to the 'datamodel' section of the module.itop-portal-url-brick.php file.
 
 // iTop 2.7 and newer
-if(file_exists(APPROOT . 'env-' . utils::GetCurrentEnvironment() . '/itop-portal-base/portal/vendor/autoload.php'))
+if(file_exists(MODULESROOT . '/itop-portal-base/portal/vendor/autoload.php'))
 {
 	// Portal framework autoloader is needed for the UrlBrickRouter
-	require_once APPROOT . 'env-' . utils::GetCurrentEnvironment() . '/itop-portal-base/portal/vendor/autoload.php';
+	require_once MODULESROOT . '/itop-portal-base/portal/vendor/autoload.php';
 	// Must be explicitly loaded to register its routes
 	require_once __DIR__ . '/src/Router/UrlBrickRouter.php';
 	require_once __DIR__ . '/vendor/autoload.php';
