@@ -21,16 +21,16 @@
 /** @noinspection PhpUnhandledExceptionInspection */
 SetupWebPage::AddModule(
 	__FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-	'itop-portal-url-brick/1.1.1',
-	array(
-		// Identification
-		//
-		'label' => 'Embedded webpage in iTop portal',
-		'category' => 'business',
+    'itop-portal-url-brick/1.2.0',
+    array(
+        // Identification
+        //
+        'label' => 'Embedded webpage in iTop portal',
+        'category' => 'business',
 
-		// Setup
-		//
-		'dependencies' => array(
+        // Setup
+        //
+        'dependencies' => array(
             'itop-portal-base/1.0.0',
             'itop-portal/1.0.0',
 		),
