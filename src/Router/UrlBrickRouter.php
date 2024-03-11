@@ -16,7 +16,7 @@ use Combodo\iTop\Portal\Routing\ItopExtensionsExtraRoutes;
 ItopExtensionsExtraRoutes::AddRoutes(array(
     array(
         'pattern' => '/url/{sBrickId}',
-        'callback' => 'Combodo\\iTop\\Portal\\Controller\\UrlBrickController::DisplayAction',
+        'callback' => 'Combodo\\iTop\\Portal\\Controller\\UrlBrickController::Display',
         'bind' => 'p_url_brick'
     )
 ));
