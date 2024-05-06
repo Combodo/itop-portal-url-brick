@@ -4,7 +4,7 @@
  * Module itop-portal-url-brick
  *
  * @author      Guillaume Lajarige <guillaume.lajarige@combodo.com>
- * @copyright   Copyright (C) 2012-2020 Combodo SARL
+ * @copyright   Copyright (C) 2012-2024 Combodo SAS
  * @license     https://www.combodo.com/documentation/combodo-software-license.html
  */
 
