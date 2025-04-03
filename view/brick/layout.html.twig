@@ -5,20 +5,20 @@
 {% block pPageBodyClass %}{{ parent() }} page_url_brick{% if oBrick.GetFullscreen == true %} page_url_brick_fullscreen{% endif %}{% endblock %}
 
 {% block pMainHeader %}
-	<div class="col-xs-12">
-		<div id="main-header-title">
-			<h2>{% block pMainHeaderTitle %}{{ oBrick.GetTitle()|dict_s }}{% endblock %}</h2>
+		<div id="main-header-title" class="ipb-page--main-header--information">
+			<div class="ipb-page--main-header--information--title">
+				<span>{% block pMainHeaderTitle %}{{ oBrick.GetTitle()|dict_s }}{% endblock %}</span><span></span>
+			</div>
 			{% if oBrick.GetSubtitle() is not null %}
-				<div id="main-header-subtitle">
+				<div id="main-header-subtitle" class="ipb-page--main-header--information--subtitle">
 					{{ oBrick.GetSubtitle()|dict_s|raw }}
 				</div>
 			{% endif %}
 		</div>
-		<div id="main-header-actions">
+		<div id="main-header-actions" class="ipb-page--main-header--actions">
             {% block pMainHeaderActions %}
             {% endblock %}
 		</div>
-	</div>
 {% endblock %}
 
 {% block pMainContentHolder%}

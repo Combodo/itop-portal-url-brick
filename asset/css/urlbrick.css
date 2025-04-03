@@ -19,9 +19,19 @@
 .page_url_brick #main-header-title{
     min-height: 4em;
 }
-.page_url_brick #main-header-title h2{
-    margin-top: 0; /* As there is no action button in the header, it's better to reduce the upper margin for a better rendering */
+
+/* Legacy for 3.2 and older */
+.page_url_brick #main-header:not(.ipb-page--main-header) {
+    padding: 0 15px;
 }
+
+.page_url_brick #main-header-title span:first-child{
+    font-size: 27px;
+    margin-top: 18px;
+    margin-bottom: 9px;
+    color: #444;
+}
+
 .page_url_brick #main-header-subtitle{
     margin-bottom: 10px;
 }
@@ -35,6 +45,11 @@
     color: #777;
     opacity: 0.8;
 }
+
+.page_url_brick .ipb-page--main-content #url_iframe_loader{
+    color: inherit;
+}
+
 .page_url_brick #url_iframe{
     width: 100%;
     border: none;
@@ -54,4 +69,19 @@
 }
 .page_url_brick.page_url_brick_fullscreen #main-header{
     display: none;
+}
+
+.page_url_brick:not(.page_url_brick_fullscreen) .ipb-main--main-container {
+    display: flex;
+    flex-direction: column;
+}
+.page_url_brick:not(.page_url_brick_fullscreen) .main-session-messages, .page_url_brick:not(.page_url_brick_fullscreen) .main-session-messages {
+    flex-grow: 0;
+}
+.page_url_brick .ipb-page--main-content {
+    position: relative;
+    flex-grow: 1;
+}
+.page_url_brick.page_url_brick_fullscreen .ipb-page--main-wrapper {
+    padding: 0;
 }
